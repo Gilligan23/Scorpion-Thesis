@@ -1,0 +1,8 @@
+prefix=/home/jgill153/catkin_ws/install
+
+Name: assembly_description
+Description: Description of assembly_description
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

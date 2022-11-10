@@ -1,0 +1,20 @@
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro $(find assembly_description)/urdf/assembly.xacro"/>
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model assembly"/>
+  <rosparam file="$(find assembly_description)/launch/controller.yaml" command="load"/>
+  
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" 
+    output="screen" ns="assembly" args="Rev1_position_controller Slider2_position_controller Rev3_position_controller Rev4_position_controller Rev5_position_controller joint_state_controller  --shutdown-timeout 15"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+    <remap from="/joint_states" to="/assembly/joint_states"/>
+  </node>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="true"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+</launch>

@@ -1,0 +1,8 @@
+prefix=/home/jgill153/catkin_ws/install
+
+Name: scorpion_robot
+Description: Description of scorpion_robot
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
